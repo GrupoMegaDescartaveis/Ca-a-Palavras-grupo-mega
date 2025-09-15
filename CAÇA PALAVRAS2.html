@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caça-Palavras</title>
+<style>
+body {
+  margin:0;
+  font-family:Arial,sans-serif;
+  background: linear-gradient(135deg,#a2d9ff,#fbc2eb);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  min-height:100vh;
+}
+h1{margin:20px;color:#444;text-shadow:1px 1px #fff;}
+#menu,#levelSelection{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:15px;
+  margin-top:50px;
+}
+.menuButton{
+  background:#ff8aa3;
+  color:#fff;
+  border:none;
+  border-radius:15px;
+  font-size:20px;
+  padding:15px 25px;
+  cursor:pointer;
+  box-shadow:2px 2px 6px #0003;
+  width:200px;
+}
+#statusBar{
+  width:90%;
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+  font-size:18px;
+  background:#ffffffaa;
+  padding:10px;
+  border-radius:15px;
+  box-shadow:2px 2px 5px #0002;
+  display:none;
+}
+#grid{
+  display:grid;
+  gap:4px;
+  margin:20px 0;
+  background:#ffffffaa;
+  padding:10px;
+  border-radius:15px;
+  box-shadow:2px 2px 8px #0003;
+  max-width:95vw;
+}
+.cell{
+  width:100%;
+  aspect-ratio:1/1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fffc;
+  border-radius:6px;
+  font-weight:bold;
+  color:#444;
+  cursor:pointer;
+  user-select:none;
+  transition:background 0.3s;
+  font-size:calc(12px + 0.5vw);
+}
+.cell.selected { background:#fff176!important; }
+.cell.found { background:#7ee57e!important; color:#fff; }
+#wordList{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  margin:10px;
+}
+.wordItem{
+  background:#fff6b3;
+  padding:6px 10px;
+  border-radius:8px;
+  box-shadow:1px 1px 3px #0002;
+  font-size:16px;
+}
+#message{
+  display:none;
+  text-align:center;
+  background:#ffffffdd;
+  padding:30px;
+  border-radius:20px;
+  position:absolute;
+  top:30%;
+  width:80%;
+  max-width:400px;
+  box-shadow:3px 3px 10px #0004;
+}
+#message h2{margin-top:0;}
+#playAgain{
+  display:none;
+  background:#ff8aa3;
+  color:#fff;
+  border:none;
+  border-radius:15px;
+  font-size:20px;
+  padding:15px 25px;
+  margin-top:15px;
+  cursor:pointer;
+  box-shadow:2px 2px 6px #0003;
+}
+</style>
+</head>
+<body>
+<h1>Caça-Palavras</h1>
+
+<div id="menu">
+  <button class="menuButton" onclick="startGame(0)">Iniciar Jogo</button>
+  <button class="menuButton" onclick="showLevelSelection()">Selecionar Nível</button>
+</div>
+
+<div id="levelSelection" style="display:none; flex-direction: column; align-items:center; gap:10px; margin-top:30px;">
+  <button class="menuButton" onclick="startGame(0)">Nível 1</button>
+  <button class="menuButton" onclick="startGame(1)">Nível 2</button>
+  <button class="menuButton" onclick="startGame(2)">Nível 3</button>
+  <button class="menuButton" onclick="startGame(3)">Nível 4</button>
+  <button class="menuButton" onclick="startGame(4)">Nível 5</button>
+</div>
+
+<div id="statusBar">
+  <div>⏱️ Tempo: <span id="time">00:00</span></div>
+  <div>⭐ Pontos: <span id="score">0</span></div>
+  <div>🎯 Nível: <span id="level">1</span>/5</div>
+</div>
+<div id="wordList"></div>
+<div id="grid"></div>
+
+<div id="message">
+  <h2 id="messageTitle"></h2>
+  <p id="messageText"></p>
+  <button id="playAgain">Jogar Novamente</button>
+</div>
+
+<script src="caca-palavras.js"></script>
+</body>
+</html>
